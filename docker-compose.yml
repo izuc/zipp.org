@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  zippnode:
+    build: .
+    ports:
+      - "8081:8081" # Other service ports
+      - "8082:8082"
+      - "4001:4001" # IPFS swarm port
+      - "5001:5001" # IPFS API port
+      - "8083:8080" # Mapping external 8083 to internal 8080
+    volumes:
+      - ./ipfs_data:/data/ipfs # IPFS data directory
+      - ./ipfs_staging:/export # Optional: Only if your application interacts with this directory

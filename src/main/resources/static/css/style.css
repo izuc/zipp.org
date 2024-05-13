@@ -1,0 +1,59 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header */
+h1 {
+    color: #007bff;
+}
+
+/* Error message styling */
+.error-message {
+    color: #d9534f;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #ffd2d2;
+    border: 1px solid #d9534f;
+    border-radius: 5px;
+}
+
+/* Button styling */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Form input styling */
+input[type="text"], input[type="password"], input[type="file"] {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: calc(100% - 22px); /* Adjust width for padding and border */
+}
+
+/* Neighbor list */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #eee;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}

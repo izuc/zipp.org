@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error Page</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Error Occurred</h1>
+        <div class="error-message">
+            <p>An error has occurred in the application. Please see the details below:</p>
+            <p th:text="${errorMessage}">Error details</p>
+        </div>
+        <div>
+            <a href="/" class="btn btn-primary">Go Back Home</a> <!-- Optional: Link back to the home page -->
+        </div>
+    </div>
+</body>
+</html>

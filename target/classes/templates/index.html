@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Zipp Node Control Panel</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <h1>Zipp Node Control Panel</h1>
+
+    <!-- Server Start/Stop -->
+    <div th:if="${!serverRunning}">
+        <form th:action="@{/start-server}" method="post">
+            <button type="submit">Start Server</button>
+        </form>
+    </div>
+    <div th:if="${serverRunning}">
+        <form th:action="@{/stop-server}" method="post">
+            <button type="submit">Stop Server</button>
+        </form>
+    </div>
+
+    <!-- Add Neighbor -->
+    <h2>Add Neighbor</h2>
+    <form th:action="@{/add-neighbor}" method="post">
+        <input type="text" name="neighborAddress" placeholder="Neighbor Address (IP:Port)" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <!-- List Neighbors -->
+    <h2>Known Neighbors</h2>
+    <ul>
+        <li th:each="neighbor : ${neighbors}">
+            [[${neighbor}]]
+            <form th:action="@{/remove-neighbor(neighbor=${neighbor})}" method="post">
+                <button type="submit">Remove</button>
+            </form>
+        </li>
+    </ul>
+
+    <form action="/set-master-password" method="post">
+        <input type="password" name="password" required>
+        <button type="submit">Set Master Password</button>
+    </form>
+
+    <!-- File Upload -->
+    <h2>Share File</h2>
+    <form th:action="@{/upload-file}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload & Share</button>
+    </form>
+
+    <h2>Shared Files</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>File ID</th>
+                <th>File Name</th>
+                <th>File Size</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="file : ${sharedFiles}">
+                <td th:text="${file.fileHash}"></td>
+                <td th:text="${file.fileName}"></td>
+                <td th:text="${file.fileSize}"></td>
+                <td>
+                    <form action="/download-file" method="post">
+                        <input type="hidden" name="fileHash" th:value="${file.fileHash}" />
+                        <button type="submit">Download</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Download File</h2>
+    <form action="/download-file" method="post">
+        <label for="fileHash">File Hash:</label>
+        <input type="text" id="fileHash" name="fileHash" required>
+        <button type="submit">Download</button>
+    </form>
+</body>
+
+</html>
